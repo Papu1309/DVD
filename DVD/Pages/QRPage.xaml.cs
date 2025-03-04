@@ -30,8 +30,23 @@ namespace DVD.Pages
 
         private void QrCode_Click(object sender, RoutedEventArgs e)
         {
-            string source = "";
+            string soucer_x1 = "https://yandex.ru/images/search?from=tabbar&img_url=https%3A%2F%2Fget.pxhere.com%2Fphoto%2Fnature-grass-outdoor-meadow-animal-pasture-sheep-mammal-fauna-lamb-vertebrate-sheeps-domestic-green-grass-cow-goat-family-823594.jpg&lr=43&pos=13&rpt=simage&text=%D0%BE%D0%B2%D1%86%D0%B0";
+            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
+            QRCoder.QRCodeData data = qr.CreateQrCode(soucer_x1, QRCoder.QRCodeGenerator.ECCLevel.L);
+            QRCoder.QRCode code = new QRCoder.QRCode(data);
+            Bitmap bitmap = code.GetGraphic(100);
 
-        }
+            using (MemoryStream memory = new MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memory;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                Qr.Source = bitmapImage;
+            } 
+        } 
     }
 }

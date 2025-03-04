@@ -13,7 +13,10 @@
             <Button x:Name="QrCode" Content="Create QR" Click="QrCode_Click"/>
         </StackPanel>
         <StackPanel>
-            <Image x:Name="Qr" Width="150" Height="50"/>
+            <Image x:Name="Qr" Width="400" Height="200"/>
+            <StackPanel>
+                <TextBlock Text="АБИБОС" HorizontalAlignment="Center" ></TextBlock>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

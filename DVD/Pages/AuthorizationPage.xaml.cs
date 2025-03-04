@@ -30,9 +30,20 @@ namespace DVD.Pages
 
         }
 
-        private void btnZ_Click(object sender, RoutedEventArgs e)
+
+        private void tbReg_MouseDown(object sender, MouseButtonEventArgs e)
         {
             NavigationService.Navigate(new SignUpPage());
+        }
+
+        private void tbReg_MouseEnter(object sender, MouseEventArgs e)
+        {
+            tbReg.Foreground = new SolidColorBrush(Colors.Red);
+        }
+
+        private void tbReg_MouseLeave(object sender, MouseEventArgs e)
+        {
+
         }
     }
 }
