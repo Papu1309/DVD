@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DVD.Connection;
 
 namespace DVD.Pages
 {
@@ -20,6 +21,8 @@ namespace DVD.Pages
     /// </summary>
     public partial class AuthorizationPage : Page
     {
+        public static Sotrudnik sotrudnik;
+
         public AuthorizationPage()
         {
             InitializeComponent();
@@ -27,7 +30,7 @@ namespace DVD.Pages
 
         private void btnV_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new capch());
         }
 
 
@@ -43,7 +46,18 @@ namespace DVD.Pages
 
         private void tbReg_MouseLeave(object sender, MouseEventArgs e)
         {
+            int login = Convert.ToInt32(tbReg.Text.Trim());
+            string password=TbPassword.Password.Trim();
+            sotrudnik=Authorisation.AuthotisationSotr(login, password);
+            if (sotrudnik != null)
+            {
+                MessageBox.Show("Ура в меня вошли");
+            }
+            else
+            {
+                MessageBox.Show("логин или пароль неверный", "error", MessageBoxButton.OK, MessageBoxImage.Error);
 
+            }
         }
     }
 }
